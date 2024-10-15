@@ -6,10 +6,14 @@ var morgan = require('morgan');
 var fs = require('fs');
 var cors = require('cors');
 const { request } = require("express");
-
+require('dotenv').config()
 var app = express();
-var CONNECTION_STRING = "mongodb+srv://phallabot:0963848814@cluster0.r7yu7.mongodb.net/?retryWrites=true&w=majority"
-var DATABASE = 'testdb';
+// var DB_HOST=process.env.DB_HOST;
+// var DB_USER=process.env.DB_USER;
+// var DB_PASS=process.env.DB_PASS;
+// var CONNECTION_STRING = "mongodb+srv://phallabot:0963848814@cluster0.r7yu7.mongodb.net/?retryWrites=true&w=majority"
+var CONNECTION_STRING = process.env.CONNECTION_STRING;
+var DATABASE = process.env.DB_NAME;
 var database;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -35,7 +39,7 @@ app.listen(4000, () => {
 app.get('/version', (req, res) => {
     res.json(
         {
-        version: 'salacyber-v3'
+        version: 'uat-5'
         }
     );
 });
@@ -159,4 +163,3 @@ app.post('/api/employee/savefile', (req,res)=>{
     }
     )
 });
-
